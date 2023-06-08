@@ -8,7 +8,7 @@ library(pROC)
 
 
 # 讀取章節字數與標點符號的csv資料
-data <- read.csv("output/eda_result.csv")
+data <- read.csv("data/eda_input.csv")
 data$new_label <- "0"
 data$new_label[1:80] <- "1"
 
@@ -86,6 +86,12 @@ test_predictions <- as.numeric(test_predictions)
 roc_info <- roc(test_labels, test_predictions)
 auc_value <- auc(roc_info)
 cat("AUC:", auc_value, "\n")
+
+
+df <- data.frame(train_accuracy, test_accuracy, precision,recall,f1_score,auc_value)
+header <- c("train_accuracy", "test_accuracy", "precision","recall","f1_score","auc")
+colnames(df) <- header
+write.csv(df, file = "results/xgboost_result.csv", row.names = FALSE)
 
 # 繪製ROC曲線
 plot(roc_info, main = "ROC Curve", xlab = "False Positive Rate", ylab = "True Positive Rate")
