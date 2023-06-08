@@ -48,7 +48,7 @@ for (i in fre_list) {
   backward_segmented_text_save <- stringr::str_c(backward_segmented_text, collapse = " ") %>% c()
   
   # 建立放置斷詞的資料夾
-  dir.create('tokenized', recursive = TRUE, showWarnings = FALSE)
+  dir.create('data/tokenized', recursive = TRUE, showWarnings = FALSE)
   
   # 將斷詞結果儲存在 txt 中
   readr::write_file(
@@ -71,7 +71,7 @@ for (i in fre_list) {
     threads = parallel::detectCores())
   
   # 建立放置模型的資料夾
-  dir.create('models', recursive = TRUE, showWarnings = FALSE)
+  dir.create('data/models', recursive = TRUE, showWarnings = FALSE)
   
   # 儲存模型
   word2vec::write.word2vec(
