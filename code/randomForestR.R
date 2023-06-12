@@ -6,9 +6,7 @@ library(ggplot2)
 library(plotly)
 
 # 載入資料集
-data <- read.csv("csvfortrain/df_jieba768.csv")
-#data <- read.csv("csvfortrain/df_bert_slidingWindow.csv")
-#data <- read.csv("csvfortrain/df_bert_chunk.csv")
+data <- read.csv("data/csvfortrain/df_jieba768.csv")
 
 #importance_feature <-read.csv("selected_features060250.csv")
 #importance_feature_list <- as.character(importance_feature$x)
@@ -48,8 +46,7 @@ train_labels <- factor(train_labels)
 ctrl <- trainControl(method = "cv", number = 5)
 
 # 建立隨機森林模型
-#model <- randomForest(x = train_data, y = train_labels, ntree = 500,trControl = ctrl)
-model <- randomForest(x = train_data, y = train_labels, ntree = 100, mtry = sqrt(ncol(train_data)), trControl = ctrl)
+model <- randomForest(x = train_data, y = train_labels, ntree = 100, mtry = 28, trControl = ctrl)
 
 
 # 預測訓練集

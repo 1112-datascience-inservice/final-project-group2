@@ -3,9 +3,7 @@ library(caret)
 library(pROC)
 
 # 載入資料集
-#data <- read.csv("csvfortrain/df_jieba100.csv")
-
-data <- read.csv("csvfortrain/new/df_bert_chunk.csv")
+data <- read.csv("data/csvfortrain/df_jieba768.csv")
 
 # 添加標籤欄位
 data$new_label <- "0"
@@ -33,13 +31,10 @@ test_labels <- data[(train_size + 1):(train_size + test_size), 102]
 ctrl <- trainControl(method = "cv", number = 5)
 
 # 建立決策樹模型
-#model <- rpart(train_labels ~ ., data = train_data, method = "class")
-# 建立決策樹模型
 model <- train(x=train_data, y=train_labels, method = "rpart", trControl = ctrl)
 
 
 # 預測訓練集
-#train_pred <- predict(model, train_data, type = "class")
 train_pred <- predict(model, train_data, type = "raw")
 
 
@@ -48,7 +43,6 @@ train_accuracy <- sum(train_labels == train_pred) / length(train_labels)
 cat("Training accuracy:", train_accuracy, "\n")
 
 # 預測測試集
-#test_pred <- predict(model, test_data, type = "class")
 test_pred <- predict(model, test_data, type = "raw")
 
 

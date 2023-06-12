@@ -2,9 +2,9 @@ library(caret)
 library(pROC)
 
 # 載入資料集
-data <- read.csv("csvfortrain/df_jieba768.csv")
-importance_feature <-read.csv("selected_features0528.csv")
-importance_feature_list <- as.character(importance_feature$x)
+data <- read.csv("data/csvfortrain/df_jieba768.csv")
+#importance_feature <-read.csv("selected_features0528.csv")
+#importance_feature_list <- as.character(importance_feature$x)
 
 
 # 添加標籤欄位
@@ -21,12 +21,12 @@ data <- data[sample(nrow(data)), ]
 train_size <- round(0.8 * nrow(data))
 test_size <- nrow(data) - train_size
 
-train_data <- data[1:train_size, importance_feature_list]
-#train_data <- data[1:train_size, 2:769]
+train_data <- data[1:train_size, 2:769]
+#train_data <- data[1:train_size, importance_feature_list]
 train_labels <- data[1:train_size, 770]
 
-test_data <- data[(train_size + 1):(train_size + test_size), importance_feature_list]
-#test_data <- data[(train_size + 1):(train_size + test_size), 2:769]
+test_data <- data[(train_size + 1):(train_size + test_size), 2:769]
+#test_data <- data[(train_size + 1):(train_size + test_size), importance_feature_list]
 test_labels <- data[(train_size + 1):(train_size + test_size), 770]
 
 
