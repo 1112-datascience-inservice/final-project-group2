@@ -24,6 +24,14 @@ for (i in args) {
     }
     
 }
+# Check input arguments
+if (is.na(f_in)) {
+    stop("Unable to identify input file, please use --input input.csv", call.=FALSE)
+}
+
+if (is.na(f_out)) {
+    stop("Unable to identify output file, please use --output output.csv", call.=FALSE)
+}
 #if (!dir.exists(f_out)) {
 #    dir.create(dirname(f_out), recursive = TRUE, showWarnings = FALSE)
 #}

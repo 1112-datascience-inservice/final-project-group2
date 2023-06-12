@@ -31,7 +31,7 @@ if (is.na(f_in)) {
 }
 
 if (is.na(f_out)) {
-    stop("Unable to identify output file, please use --output performance.csv", call.=FALSE)
+    stop("Unable to identify output file, please use --output output.csv", call.=FALSE)
 }
 
 
