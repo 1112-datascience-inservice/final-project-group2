@@ -5,11 +5,36 @@ library(dplyr)
 library(ggplot2)
 library(plotly)
 
+# Parse command-line arguments
+args <- commandArgs(trailingOnly=TRUE)
+if (length(args)==0) {
+    stop("[USAGE] Rscript code/randomForestR.R --input data/csvfortrain/df_jieba768.csv --output results/demo/performance.csv", call.=FALSE)
+}
+
+# Parse input arguments
+f_in <- NA
+f_out <- NA
+
+for (i in args) {
+    if (i == '--input') {
+        f_in <- args[which(args==i)+1]
+    }
+    if (i == '--output') {
+        f_out <- args[which(args==i)+1]
+    }
+    
+}
+#if (!dir.exists(f_out)) {
+#    dir.create(dirname(f_out), recursive = TRUE, showWarnings = FALSE)
+#}
+
 # 載入資料集
-data <- read.csv("data/csvfortrain/df_jieba768.csv")
+#data <- read.csv("data/csvfortrain/df_jieba768.csv")
 
 #importance_feature <-read.csv("selected_features060250.csv")
 #importance_feature_list <- as.character(importance_feature$x)
+
+data <- read.csv(f_in)
 
 # 添加標籤欄位
 data$new_label <- "0"
@@ -94,8 +119,28 @@ roc_info <- roc(test_labels, test_pred)
 auc_value <- auc(roc_info)
 cat("AUC:", auc_value, "\n")
 
-# 繪製ROC曲線
+# 將結果寫入CSV檔案
+performance <- data.frame(
+    Train_Accuracy = train_accuracy,
+    Test_Accuracy = test_accuracy,
+    Precision = precision,
+    Recall = recall,
+    F1_Score = f1_score,
+    AUC = auc_value
+)
+
+write.table(performance, file = f_out, sep = ",", row.names = FALSE)
+# 輸出混淆矩陣
+write.csv(confusion, file = "results/demo/confusion_matrix.csv")
+# 將圖形輸出為 PDF 檔案
+pdf("results/demo/roc_curve.pdf")
 plot(roc_info, main = "ROC Curve", xlab = "False Positive Rate", ylab = "True Positive Rate")
+dev.off()
+
+
+
+# 繪製ROC曲線
+#plot(roc_info, main = "ROC Curve", xlab = "False Positive Rate", ylab = "True Positive Rate")
 
 
 # 將 train_data 和 test_data 做 PCA 轉換
@@ -108,31 +153,45 @@ test_data_pca <- as.data.frame(pca_test[, 1:3])
 
 # 2D 圖形
 data_pca_2d <- bind_cols(test_data_pca, label = as.factor(test_labels))
-ggplot(data_pca_2d, aes(x = PC1, y = PC2, color = label)) +
-  geom_point() +
-  ggtitle("2D PCA Plot")
+#ggplot(data_pca_2d, aes(x = PC1, y = PC2, color = label)) +
+#  geom_point() +
+#  ggtitle("2D PCA Plot")
+
+# 將圖形輸出為 PDF 檔案
+ggsave("results/demo/2d_pca_plot.pdf", plot = ggplot(data_pca_2d, aes(x = PC1, y = PC2, color = label)) + geom_point() + ggtitle("2D PCA Plot"))
 
 # 3D 圖形
 data_pca_3d <- bind_cols(test_data_pca, label = as.factor(test_labels))
-plot_ly(data = data_pca_3d, x = ~PC1, y = ~PC2, z = ~PC3, color = ~label) %>%
-  add_markers() %>%
-  layout(scene = list(xaxis = list(title = "PC1"),
-                      yaxis = list(title = "PC2"),
-                      zaxis = list(title = "PC3")),
-         title = "3D PCA Plot")
+#plot_ly(data = data_pca_3d, x = ~PC1, y = ~PC2, z = ~PC3, color = ~label) %>%
+#  add_markers() %>%
+#  layout(scene = list(xaxis = list(title = "PC1"),
+#                      yaxis = list(title = "PC2"),
+#                      zaxis = list(title = "PC3")),
+#         title = "3D PCA Plot")
 
+# 將圖形輸出為 HTML 檔案（互動式 3D 圖形）
+# 將圖形輸出為HTML檔案
+htmlwidgets::saveWidget(
+    plot_ly(data = data_pca_3d, x = ~PC1, y = ~PC2, z = ~PC3, color = ~label) %>%
+        add_markers() %>%
+        layout(scene = list(xaxis = list(title = "PC1"),
+                            yaxis = list(title = "PC2"),
+                            zaxis = list(title = "PC3")),
+               title = "3D PCA Plot"),
+    file = "results/demo/3d_pca_plot.html"
+)
 # 獲得特徵重要性
-feature_importance <- importance(model)
+#feature_importance <- importance(model)
 # 按照特徵重要性由大到小的順序排序
-sorted_features <- feature_importance[order(-feature_importance), ]
+#sorted_features <- feature_importance[order(-feature_importance), ]
 # 印出特徵重要性
-print(sorted_features)
+#print(sorted_features)
 #取值>0.2
-selected_features <- names(sorted_features[sorted_features > 0.1])
-print(selected_features)
+#selected_features <- names(sorted_features[sorted_features > 0.1])
+#print(selected_features)
 #取前100個排序過後的特徵
-selected100_features <- names(sorted_features[1:50])
-print(selected100_features)
+#selected100_features <- names(sorted_features[1:50])
+#print(selected100_features)
 # 將 selected_features 輸出至 CSV 檔案
-write.csv(selected100_features, file = "selected_features060250.csv", row.names = FALSE)
+#write.csv(selected100_features, file = "selected_features060250.csv", row.names = FALSE)
 
