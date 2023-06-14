@@ -15,9 +15,9 @@
 ## Contributors
 |組員|系級|學號|工作分配|
 |-|-|-|-|
-|　郝昀|資科專二|110971012|資料前處理、資料分析|
-|曾祐展|資科專一|111971004|資料前處理、資料分析|
-|羅延康|資科專一|111971011|資料蒐集、資料前處理、資料分析|
+|　郝昀|資科碩二|110971012|資料前處理、資料分析|
+|曾祐展|資科碩一|111971004|資料前處理、資料分析、特徵工程|
+|羅延康|資科碩一|111971011|資料蒐集、資料前處理、資料分析|
 |羅永傑|資科碩一|111971012|模型訓練、資料分析、成效評估|
 |蔡孟宗|資科碩一|111971015|資料前處理、模型訓練、成效評估|
 |楊德倫|資科碩一|111971029|企畫發想、特徵工程、錯誤分析、結論|
@@ -27,6 +27,26 @@
 You might provide an example commend or few commends to reproduce your analysis, i.e., the following R script
 ```R
 Rscript code/your_script.R --input data/training --output results/performance.tsv
+```
+Demo1
+```R
+Rscript code/treeDepthAndImportantFeatureR.R --input data/csvfortrain/df_jieba768.csv --output results/demo/importantFeatures.csv
+```
+Demo2
+```R
+Rscript code/randomForestR.R --input data/csvfortrain/df_jieba768.csv --output results/demo/performance.csv
+```
+Demo3 - pca
+```R
+Rscript code/pca.R --input data/csvfortrain --output results/pca
+```
+Demo4 - tsne
+```R
+Rscript code/tsne.R --input data/csvfortrain --output results/tsne
+```
+Demo5 - umap
+```R
+Rscript code/wordembeddingspace.R --input data/dataset/version_1_clean.json --output results/umap
 ```
 
 ## Folder organization and its related description
