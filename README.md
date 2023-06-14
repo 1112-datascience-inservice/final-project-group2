@@ -36,6 +36,18 @@ Demo2
 ```R
 Rscript code/randomForestR.R --input data/csvfortrain/df_jieba768.csv --output results/demo/performance.csv
 ```
+Demo3 - pca
+```R
+Rscript code/pca.R --input data/csvfortrain --output results/pca
+```
+Demo4 - tsne
+```R
+Rscript code/tsne.R --input data/csvfortrain --output results/tsne
+```
+Demo5 - umap
+```R
+Rscript code/wordembeddingspace.R --input data/dataset/version_1_clean.json --output results/umap
+```
 
 ## Folder organization and its related description
 idea by Noble WS (2009) [A Quick Guide to Organizing Computational Biology Projects.](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424) PLoS Comput Biol 5(7): e1000424.
