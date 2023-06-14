@@ -28,11 +28,11 @@ You might provide an example commend or few commends to reproduce your analysis,
 ```R
 Rscript code/your_script.R --input data/training --output results/performance.tsv
 ```
-Demo1
+Demo1 - Tree Depth & Important Features
 ```R
 Rscript code/treeDepthAndImportantFeatureR.R --input data/csvfortrain/df_jieba768.csv --output results/demo/importantFeatures.csv
 ```
-Demo2
+Demo2 - Random Forest
 ```R
 Rscript code/randomForestR.R --input data/csvfortrain/df_jieba768.csv --output results/demo/performance.csv
 ```
