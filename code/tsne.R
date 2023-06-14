@@ -1,3 +1,21 @@
+args = commandArgs(trailingOnly=TRUE)
+
+if (length(args)==0) {
+  stop("USAGE: Rscript code/tsne.R --input data/csvfortrain --output results/tsne", call.=FALSE)
+}
+
+f_in <- NA
+f_out <- NA
+
+for (i in args) {
+  if (i == '--input') {
+    f_in <- args[which(args==i)+1]
+  } 
+  if (i == '--output') {
+    f_out <- args[which(args==i)+1]
+  }
+}
+
 # 載入所需套件
 library(Rtsne)
 library(plotly)
@@ -5,7 +23,7 @@ library(plotly)
 file_name_list = list('df_bert_chunking_768', 'df_bert_slidingWindow_768', 'df_bert768', 'df_ckip100', 'df_ckip768', 'df_jieba100', 'df_jieba768', 'df_jieba768_fre278')
 for (i in file_name_list) {
   # 讀取資料
-  data <- read.csv(paste(paste("data/csvfortrain/", i, sep = ""), '.csv', sep = ""))
+  data <- read.csv(paste(paste(paste(f_in, "/", sep = ""), i, sep = ""), '.csv', sep = ""))
   
   # 移除第1個欄位
   data <- data[, -1]
@@ -33,9 +51,9 @@ for (i in file_name_list) {
            hoverlabel = list(namelength = -1))
   
   # 建立 csv 資料夾
-  dir.create('results/tsne', recursive = TRUE, showWarnings = FALSE)
+  dir.create(f_out, recursive = TRUE, showWarnings = FALSE)
   
   # 將結果存成html
-  htmlwidgets::saveWidget(plot, paste(paste("results/tsne/", i, sep = ""), '.html', sep = ""))
+  htmlwidgets::saveWidget(plot, paste(paste(paste(f_out, "/", sep = ""), i, sep = ""), '.html', sep = ""))
 }
 

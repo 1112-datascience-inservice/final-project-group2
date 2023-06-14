@@ -1,3 +1,21 @@
+args = commandArgs(trailingOnly=TRUE)
+
+if (length(args)==0) {
+  stop("USAGE: Rscript code/wordembeddingspace.R --input data/dataset/version_1_clean.json --output results/umap", call.=FALSE)
+}
+
+f_in <- NA
+f_out <- NA
+
+for (i in args) {
+  if (i == '--input') {
+    f_in <- args[which(args==i)+1]
+  } 
+  if (i == '--output') {
+    f_out <- args[which(args==i)+1]
+  }
+}
+
 library(jiebaR)
 library(jiebaRD)
 library(rjson)
@@ -9,7 +27,7 @@ library(ggplot2)
 library(plotly)
 
 # 讀取 json
-json <- fromJSON(file = "data/dataset/version_1_clean.json")
+json <- fromJSON(file = f_in)
 
 # 轉換成 dataframe
 df <- as.data.frame(json)
@@ -159,8 +177,8 @@ for (i in fre_list) {
                         zaxis = list(title = "z")))
   
   # 建立 csv 資料夾
-  dir.create('results/umap', recursive = TRUE, showWarnings = FALSE)
+  dir.create(f_out, recursive = TRUE, showWarnings = FALSE)
   
   # 將結果存成html
-  htmlwidgets::saveWidget(plot, paste(paste("results/umap/", i, sep = ""), '.html', sep = ""))
+  htmlwidgets::saveWidget(plot, paste(paste(paste(f_out, "/", sep = ""), i, sep = ""), '.html', sep = ""))
 }
