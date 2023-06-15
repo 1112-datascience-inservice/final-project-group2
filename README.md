@@ -78,7 +78,7 @@ idea by Noble WS (2009) [A Quick Guide to Organizing Computational Biology Proje
 ## References
 * 語料來源
   - [紅樓夢甲版來源](http://www.speedy7.com/cn/stguru/cht/redmansions.htm)
-參考網頁
+* 參考網頁
   - [Wiki 紅樓夢](https://zh.wikipedia.org/zh-tw/紅樓夢)
   - [利用文本採礦探討《紅樓夢》的後四十回作者爭議](http://www.dadh-record.digital.ntu.edu.tw/config_xml/2012config/programINFO/abs/paper03_01_abs.pdf)
   - [淺談中文比對系統中的「文風分析」](https://lsl.sinica.edu.tw/Blog/2022/08/29-2/)
