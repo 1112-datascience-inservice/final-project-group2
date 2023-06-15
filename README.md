@@ -50,25 +50,32 @@ Rscript code/wordembeddingspace.R --input data/dataset/version_1_clean.json --ou
 ```
 
 ## Folder organization and its related description
-idea by Noble WS (2009) [A Quick Guide to Organizing Computational Biology Projects.](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424) PLoS Comput Biol 5(7): e1000424.
 
 ### docs
-* Your presentation, 1112_DS-FP_groupID.ppt/pptx/pdf (i.e.,1112_DS-FP_group1.ppt), by **06.08**
-* Any related document for the project
-  * i.e., software user guide
+* 1112_DS-FP_group2.pptx
 
 ### data
-* Input
-  * Source
-  * Format
-  * Size 
-* Output
+* csvfortrain
+* dataset
+* image
+* models
+* tokenized
+  * eda_input.csv
 
 ### code
-* Analysis steps
-* Which method or package do you use? 
-  * original packages in the paper
-  * additional packages you found
+* embedding
+  * decisionTreeR.R
+  * eda.R
+  * jieba768_fre278.R
+  * knnR.R
+  * logisticRegressionR.R
+  * pca.R
+  * randomForestR.R
+  * treeDepthAndlmportantFeatureR.R
+  * tsne.R
+  * wordembeddingspace.R
+  * xgboost.R
+  * XGBoostR.R
 
 ### results
 * What is a null model for comparison?
