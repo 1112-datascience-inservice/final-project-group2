@@ -78,9 +78,11 @@ Rscript code/wordembeddingspace.R --input data/dataset/version_1_clean.json --ou
   * XGBoostR.R
 
 ### results
-* What is a null model for comparison?
-* How do your perform evaluation?
-  * Cross-validation, or extra separated data
+* demo
+* pca
+* tsne
+* umap
+  * xgboost_result.csv
 
 ## References
 * 語料來源
