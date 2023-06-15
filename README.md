@@ -15,7 +15,7 @@
 ## Contributors
 |組員|系級|學號|工作分配|
 |-|-|-|-|
-|　郝昀|資科碩二|110971012|資料前處理、資料分析|
+|郝　昀|資科碩二|110971012|資料前處理、資料分析|
 |曾祐展|資科碩一|111971004|資料前處理、資料分析、特徵工程|
 |羅延康|資科碩一|111971011|資料蒐集、資料前處理、資料分析|
 |羅永傑|資科碩一|111971012|模型訓練、資料分析、成效評估|
@@ -76,5 +76,9 @@ idea by Noble WS (2009) [A Quick Guide to Organizing Computational Biology Proje
   * Cross-validation, or extra separated data
 
 ## References
-* Packages you use
-* Related publications
+* 語料來源
+  - [紅樓夢甲版來源](http://www.speedy7.com/cn/stguru/cht/redmansions.htm)
+參考網頁
+  - [Wiki 紅樓夢](https://zh.wikipedia.org/zh-tw/紅樓夢)
+  - [利用文本採礦探討《紅樓夢》的後四十回作者爭議](http://www.dadh-record.digital.ntu.edu.tw/config_xml/2012config/programINFO/abs/paper03_01_abs.pdf)
+  - [淺談中文比對系統中的「文風分析」](https://lsl.sinica.edu.tw/Blog/2022/08/29-2/)
